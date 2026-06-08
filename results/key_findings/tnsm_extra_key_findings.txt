@@ -1,0 +1,30 @@
+TNSM extra results summary
+
+1. Rule-based and fixed-UCB runtime shields
+- Full-CertiTwin-q90 achieves max shielded unsafe = 0.0050% and max false-safe = 0.0050% across the reconstructable controller-level candidates.
+- SLA-Rule-Shield leaves max shielded unsafe = 1.3350% and max false-safe = 1.3350%, showing that mean-risk rules do not sufficiently control false-safe execution.
+- Fixed-UCB-1sigma and Fixed-UCB-1.64sigma achieve max shielded unsafe = 0.0000% and 0.0000%, respectively, in this dataset. These variants are strong conservative shields, but they rely on manually chosen uncertainty multipliers rather than calibration-split residual adaptation.
+- Recommended paper interpretation: SLA-Rule-Shield demonstrates the limitation of predicted-mean safety rules; Fixed-UCB demonstrates a strong but hand-tuned conservative alternative; CertiTwin-RSM provides a calibrated, data-adaptive certificate suitable for runtime SLA assurance.
+
+2. Runtime overhead in the real replayed candidate setting
+- The real replayed finite-candidate setting has effective K = 5.
+- End-to-end Python implementation latency is mean = 1.2109 ms, P95 = 1.8253 ms, and P99 = 2.4136 ms.
+- Shielded unsafe = 0.0017%, utility retention = 90.9864%, and fallback = 0.0000%.
+- Recommended paper interpretation: under the actual replayed candidate construction, CertiTwin-RSM adds only millisecond-level execution-time overhead.
+
+3. Synthetic candidate-size runtime scalability
+- The vectorized certificate-filtering and projection micro-benchmark reaches K=1000 with mean latency = 0.0496 ms and P99 latency = 0.1625 ms.
+- Linear fit of mean latency versus K gives slope = 0.00001492 ms/candidate, intercept = 0.033825 ms, and R^2 = 0.9811.
+- Recommended paper interpretation: the algorithmic core of finite-candidate certificate filtering and projection scales approximately linearly with candidate-set size. This synthetic benchmark is used only for runtime scaling, not for replayed safety or utility comparison.
+
+4. Multi-seed stability
+- Under real K=5, PF remains safe without intervention: raw/shielded unsafe = 0.0000 ± 0.0000 / 0.0000 ± 0.0000.
+- Under real K=5, Greedy-SLA is consistently corrected: raw unsafe = 13.2933 ± 0.0000, shielded unsafe = 0.0000 ± 0.0000, utility retention = 98.3141 ± 0.0000, fallback = 0.0000 ± 0.0000.
+- Under real K=5, DT-Top1 is aggressively unsafe before shielding but stable after shielding: raw unsafe = 70.2840 ± 0.0009, shielded unsafe = 0.0050 ± 0.0000, utility retention = 90.9865 ± 0.0001, fallback = 0.0000 ± 0.0000.
+- Recommended paper interpretation: evaluation-level multi-seed analysis confirms that the runtime shielding behavior is not caused by a particular candidate ordering or tie-breaking choice.
+
+5. How to place these results in the paper
+- Main text Table IV: use paper_table_IV_rule_based_fixed_ucb_shields.csv.
+- Main text Table V: use paper_table_V_runtime_overhead_scalability.csv.
+- Appendix table: use appendix_table_multiseed_stability.csv.
+- In the main text, state explicitly that the synthetic K-scaling benchmark is used only for runtime overhead analysis and does not change the replayed-candidate safety/utility evaluation.

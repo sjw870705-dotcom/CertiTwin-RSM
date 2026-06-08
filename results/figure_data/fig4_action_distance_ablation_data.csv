@@ -1,0 +1,6 @@
+﻿variant,mean_action_distance,note,shielded_unsafe_raw,utility_retention_raw,fallback_raw
+Full-CertiTwin,5.776680000000001,loaded from step3_1_ablation_summary.csv,0.27509,0.9647550267159872,0.0
+Raw-Pred-Safe,5.6651,loaded from step3_1_ablation_summary.csv,0.27509,0.965469841837837,0.0
+Uncalibrated-Upper,5.76975,loaded from step3_1_ablation_summary.csv,0.27509,0.9647972797001735,0.0
+No-Distance-Projection,15.67956,loaded from step3_1_ablation_summary.csv,0.27509,0.9991370995266928,0.0
+Risk-Min-Projection,15.6513,loaded from step3_1_ablation_summary.csv,0.27509,0.9990662550998841,0.0

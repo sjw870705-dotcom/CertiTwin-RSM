@@ -1,0 +1,15 @@
+# Example repository-relative paths for optional full-pipeline execution.
+# Update these paths only if you add full processed data.
+project_root: "."
+
+data:
+  processed_samples_dir: "data/processed_samples"
+  processed_full_dir: "data/processed"
+
+results:
+  paper_tables_dir: "results/paper_tables"
+  figure_data_dir: "results/figure_data"
+  key_findings_dir: "results/key_findings"
+
+figures:
+  paper_dir: "figures/paper"

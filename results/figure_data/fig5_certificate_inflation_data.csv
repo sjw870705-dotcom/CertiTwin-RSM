@@ -1,0 +1,21 @@
+﻿noise_scale,alpha,max_shielded_unsafe_pct,min_utility_retention_pct,max_fallback_pct,mean_action_distance,note
+0.25,1.0,10.68333333333333,92.45025890400476,0.0,5.0753900000000005,loaded from step4_1b_certificate_inflation_overall.csv
+0.25,1.25,8.80166666666666,92.24048578429111,0.0,5.27379,loaded from step4_1b_certificate_inflation_overall.csv
+0.25,1.5,7.24333333333333,92.07584551950464,0.0,5.45526,loaded from step4_1b_certificate_inflation_overall.csv
+0.25,2.0,5.02833333333333,91.8871760820382,0.0,5.79913,loaded from step4_1b_certificate_inflation_overall.csv
+0.25,2.5,3.53666666666666,91.83818657825734,0.0016666666666666668,6.1835,loaded from step4_1b_certificate_inflation_overall.csv
+0.5,1.0,20.665,94.1686092078203,0.05833333333333,5.74177,loaded from step4_1b_certificate_inflation_overall.csv
+0.5,1.25,19.03333333333333,94.02679302173016,0.06666666666665999,6.09475,loaded from step4_1b_certificate_inflation_overall.csv
+0.5,1.5,17.44166666666666,93.89797624185631,0.09666666666666,6.4798,loaded from step4_1b_certificate_inflation_overall.csv
+0.5,2.0,14.65999999999999,93.6967329470979,0.21,7.308969999999999,loaded from step4_1b_certificate_inflation_overall.csv
+0.5,2.5,12.36666666666667,93.57389526264822,0.39833333333333,8.27976,loaded from step4_1b_certificate_inflation_overall.csv
+0.75,1.0,24.47666666666667,94.92256388939543,0.73166666666666,8.187000000000001,loaded from step4_1b_certificate_inflation_overall.csv
+0.75,1.25,23.236666666666668,94.82915278732536,0.90166666666666,8.625589999999999,loaded from step4_1b_certificate_inflation_overall.csv
+0.75,1.5,22.075,94.75362116573109,1.10666666666666,9.08862,loaded from step4_1b_certificate_inflation_overall.csv
+0.75,2.0,20.09833333333333,94.62830496949756,1.66166666666666,10.0793,loaded from step4_1b_certificate_inflation_overall.csv
+0.75,2.5,18.35999999999999,94.53180567207417,2.5,11.07687,loaded from step4_1b_certificate_inflation_overall.csv
+1.0,1.0,26.303333333333327,95.17312718654807,2.34166666666666,10.665970000000002,loaded from step4_1b_certificate_inflation_overall.csv
+1.0,1.25,25.50666666666666,95.12263479441448,2.70833333333333,11.09437,loaded from step4_1b_certificate_inflation_overall.csv
+1.0,1.5,24.69333333333333,95.08211024733643,3.11666666666666,11.55315,loaded from step4_1b_certificate_inflation_overall.csv
+1.0,2.0,23.25666666666667,95.0149682562822,4.07166666666666,12.460629999999998,loaded from step4_1b_certificate_inflation_overall.csv
+1.0,2.5,21.88166666666666,94.95178919478346,5.29666666666666,13.39796,loaded from step4_1b_certificate_inflation_overall.csv

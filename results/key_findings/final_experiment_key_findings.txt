@@ -1,0 +1,19 @@
+Final Experimental Key Findings for CertiTwin-RSM
+
+1. Digital twin and calibrated certification are reliable enough for shielding.
+The candidate-aware digital twin achieves low prediction errors for the key SLA-risk targets. The available diagnostics report V_embb MAE=0.007124 and V_urllc MAE=0.003058. The calibrated q90 bound provides the basis for constructing certified safe candidate sets.
+
+2. CertiTwin-RSM systematically improves heterogeneous raw controllers.
+Across PF, Greedy-SLA, DT-Top1, PPO, and PPO-Penalty, the main paired comparison shows that CertiTwin reduces the maximum post-execution unsafe rate from 70.2850% to 0.0050%, while maintaining a minimum utility retention of 90.9864% and zero fallback. This supports the claim that CertiTwin-RSM is a controller-agnostic execution-time SLA risk shield.
+
+3. The mechanism is not a simple post-processing replacement rule.
+The ablation study shows that Raw-Pred-Safe increases the maximum shielded unsafe rate to 1.3350%, compared with 0.0050% for Full-CertiTwin. Uncalibrated-Upper also remains weaker than the calibrated certificate. Removing the distance-aware projection increases mean action distance from 5.7767 to 15.6796, indicating that the full design better preserves raw-controller intent.
+
+4. Certificate inflation provides robustness under degraded twin reliability.
+Under perturbed twin predictions, increasing the certificate inflation factor alpha reduces unsafe decisions and exposes a tunable safety-utility-intrusiveness tradeoff. At noise_scale=1.0, the recommended alpha is 2.5, with max unsafe=21.8817%, min utility retention=94.9518%, and max fallback=5.2967%.
+
+5. CertiTwin-RSM is not tied to a single SLA threshold.
+Under the default SLA scale of 1.00, the maximum shielded unsafe rate is 0.0050% with minimum utility retention of 90.9864%. Under moderately strict SLA scale 0.90, the maximum shielded unsafe rate is 0.0000%. Extremely strict SLA scale 0.80 acts as a feasibility-margin stress test, where residual unsafe actions increase to 1.5250% but utility retention remains 91.0624%.
+
+Overall conclusion:
+The experimental evidence supports the central claim that CertiTwin-RSM provides calibrated, controller-agnostic, execution-time SLA risk shielding for dynamic O-RAN spectrum/slicing management. The results cover effectiveness, mechanism necessity, perturbation robustness, and SLA-threshold robustness.

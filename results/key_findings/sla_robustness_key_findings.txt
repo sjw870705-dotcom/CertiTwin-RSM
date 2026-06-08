@@ -1,0 +1,23 @@
+Step 4.2B SLA Threshold Robustness Key Findings
+
+1. Default and moderately strict SLA regimes are stable.
+At the default SLA scale of 1.00, CertiTwin-RSM achieves a maximum shielded unsafe rate of 0.0050% with a minimum utility retention of 90.9864% and zero fallback. Under the moderately strict scale of 0.90, the maximum shielded unsafe rate is 0.0000%, with minimum utility retention of 90.9860%.
+
+2. Extremely strict SLA behaves as a stress test.
+At the extremely strict scale of 0.80, the maximum shielded unsafe rate increases to 1.5250%, while the minimum utility retention remains 91.0624% and fallback remains 0.0000%. This indicates that the shield remains operational under stricter feasibility margins, but residual unsafe actions can appear when the SLA becomes very tight.
+
+3. Loose SLA naturally reduces intervention pressure.
+At SLA scales of 1.10 and 1.20, the maximum raw unsafe rates are 0.0000% and 0.0000%, respectively. In these regimes, unsafe-reduction metrics become less meaningful because raw actions are already safe. The relevant observation is that CertiTwin preserves safety and maintains high utility retention.
+
+4. The corrected paper-level interpretation should not treat unsafe reduction as mandatory when raw unsafe is zero.
+The original Step 4.2 script marked unsafe_reduction_shift_ok as false because loose SLA regimes have no raw unsafe actions. Step 4.2B fixes this interpretation: strict/default SLA regimes are evaluated by unsafe reduction and shielded unsafe rate, while loose SLA regimes are evaluated by low intervention, high retention, and zero fallback.
+
+Quality checks:
+{
+  "has_all_threshold_scales": true,
+  "default_operating_point_ok": true,
+  "moderately_strict_sla_ok": true,
+  "extremely_strict_sla_stress_acceptable": true,
+  "loose_sla_pass_through_regime_ok": true,
+  "overall_sla_robustness_paper_ready": true
+}

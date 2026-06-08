@@ -1,0 +1,5 @@
+﻿Shielding method,Controllers,Max unsafe (%),Mean unsafe (%),Min utility retention (%),Mean action distance,Max fallback (%),Max false-safe (%)
+Full-CertiTwin-q90,3,0.005,0.0017,90.9864,5.8501,0.0,0.005
+SLA-Rule-Shield,3,1.335,0.4567,99.7962,15.6196,0.0,1.335
+Fixed-UCB-1sigma-Shield,3,0.0,0.0,90.9857,5.8505,0.0,0.0
+Fixed-UCB-1.64sigma-Shield,3,0.0,0.0,90.992,5.8657,0.0,0.0

@@ -1,0 +1,18 @@
+Step 3.2 Ablation Key Findings
+
+1. Calibration is necessary.
+Full-CertiTwin achieves a maximum shielded unsafe rate of 0.0050%, whereas Raw-Pred-Safe reaches 1.3350%. This means that using predicted mean safety alone leaves substantially more unsafe actions after shielding. The uncalibrated mean-plus-sigma variant reduces the maximum unsafe rate to 0.0917%, but it still remains higher than the calibrated q90 upper-bound version.
+
+2. The complete CertiTwin design provides the most reliable safety.
+Full-CertiTwin keeps the mean shielded unsafe rate at 0.0010% with zero fallback, while maintaining a minimum utility retention of 90.9864%. This confirms that the calibrated certified safe set is not overly conservative.
+
+3. Distance-aware projection preserves raw-controller intent.
+No-Distance-Projection and Risk-Min-Projection achieve similarly low unsafe rates, but their mean action distances are 15.6796 and 15.6513, respectively, compared with 5.7767 for Full-CertiTwin. Thus, removing the distance term makes the shield more intrusive even when safety is maintained.
+
+4. Risk-only projection is not the preferred operating point.
+Risk-Min-Projection can keep actions safe in this logged-candidate setting, but it changes actions much more aggressively. Therefore, Full-CertiTwin provides a better safety-intent tradeoff: it enforces certified SLA safety while staying closer to the raw controller decision.
+
+Recommended paper placement:
+- Main text: use table_step3_2_ablation_paper.csv.
+- Appendix: use table_step3_2_ablation_controller_detail.csv.
+- Main explanation: emphasize calibration, certified upper bound, and distance-aware projection.

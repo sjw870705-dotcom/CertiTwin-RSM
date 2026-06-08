@@ -1,0 +1,5 @@
+runtime:
+  replayed_candidate_size: 5
+  synthetic_candidate_sizes: [5, 20, 100, 500, 1000]
+  metric_columns: [mean_latency_ms, p95_latency_ms, p99_latency_ms]
+  benchmark_scope: vectorized_certificate_filtering_and_projection_core

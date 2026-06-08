@@ -1,0 +1,13 @@
+certificate:
+  q_level: 90
+  alpha: 1.0
+  perturbation_inflation_alpha_grid: [1.0, 1.25, 1.5, 2.0, 2.5]
+shielding:
+  projection: distance_aware
+  fallback: min_risk_candidate
+  finite_candidate_set: true
+metrics:
+  report_unsafe_rate: true
+  report_utility_retention: true
+  report_action_distance: true
+  report_fallback: true

@@ -1,0 +1,6 @@
+﻿sla_scale,regime,max_shielded_unsafe_pct,min_utility_retention_pct,max_fallback_pct,note
+0.8,Extremely strict,1.525,91.0624,0.0,loaded from table_step4_2b_sla_robustness_paper.csv
+0.9,Moderately strict,0.0,90.986,0.0,loaded from table_step4_2b_sla_robustness_paper.csv
+1.0,Default,0.005,90.9864,0.0,loaded from table_step4_2b_sla_robustness_paper.csv
+1.1,Moderately loose,0.0,92.0515,0.0,loaded from table_step4_2b_sla_robustness_paper.csv
+1.2,Loose,0.0,97.2582,0.0,loaded from table_step4_2b_sla_robustness_paper.csv

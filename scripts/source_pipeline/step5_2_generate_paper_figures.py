@@ -1,0 +1,260 @@
+import json
+from pathlib import Path
+
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+
+FIG_DIR = PROJECT_ROOT / "figures" / "paper"
+RESULT_DIR = PROJECT_ROOT / "results" / "step5_2"
+
+FIG_DIR.mkdir(parents=True, exist_ok=True)
+RESULT_DIR.mkdir(parents=True, exist_ok=True)
+
+# Input files
+MAIN_TABLE = PROJECT_ROOT / "results" / "step2_7" / "table_step2_7_main_raw_vs_certitwin_paper.csv"
+MAIN_FULL_TABLE = PROJECT_ROOT / "results" / "step2_7" / "table_step2_7_main_raw_vs_certitwin.csv"
+
+CERT_INFLATION_OVERALL = PROJECT_ROOT / "results" / "step4_1b" / "step4_1b_certificate_inflation_overall.csv"
+CERT_INFLATION_RECOMMENDED = PROJECT_ROOT / "results" / "step4_1b" / "step4_1b_recommended_alpha.csv"
+
+SLA_TABLE = PROJECT_ROOT / "results" / "step4_2b" / "table_step4_2b_sla_robustness_paper.csv"
+
+OUT_REPORT_JSON = RESULT_DIR / "step5_2_figure_generation_report.json"
+
+
+def assert_exists(path: Path):
+    if not path.exists():
+        raise FileNotFoundError(f"Missing required file: {path}")
+
+
+def save_figure(fig, name):
+    png = FIG_DIR / f"{name}.png"
+    pdf = FIG_DIR / f"{name}.pdf"
+    fig.savefig(png, dpi=300, bbox_inches="tight")
+    fig.savefig(pdf, bbox_inches="tight")
+    plt.close(fig)
+    return str(png), str(pdf)
+
+
+def clean_controller_name(name):
+    name = str(name)
+    name = name.replace("PPO-Utility", "PPO")
+    name = name.replace("CertiTwin-PPO-Utility", "CertiTwin-PPO")
+    return name
+
+
+def fig3_main_unsafe_reduction():
+    df = pd.read_csv(MAIN_TABLE)
+
+    controller_col = "Raw controller"
+    raw_col = "Raw unsafe (%)"
+    shield_col = "Shielded unsafe (%)"
+
+    df[controller_col] = df[controller_col].apply(clean_controller_name)
+
+    x = np.arange(len(df))
+    width = 0.36
+
+    fig, ax = plt.subplots(figsize=(8.0, 4.4))
+
+    ax.bar(x - width / 2, df[raw_col].astype(float), width, label="Raw controller")
+    ax.bar(x + width / 2, df[shield_col].astype(float), width, label="CertiTwin-shielded")
+
+    ax.set_ylabel("Unsafe decisions (%)")
+    ax.set_xlabel("Raw controller")
+    ax.set_xticks(x)
+    ax.set_xticklabels(df[controller_col], rotation=20, ha="right")
+    ax.set_title("Unsafe-rate reduction across controllers")
+    ax.legend(frameon=False)
+
+    ax.grid(axis="y", linestyle="--", linewidth=0.6, alpha=0.6)
+
+    # Annotate shielded values when near zero.
+    for i, v in enumerate(df[shield_col].astype(float)):
+        ax.text(
+            i + width / 2,
+            v + max(0.2, 0.01 * max(df[raw_col].astype(float).max(), 1)),
+            f"{v:.3g}",
+            ha="center",
+            va="bottom",
+            fontsize=8,
+        )
+
+    fig.tight_layout()
+    return save_figure(fig, "fig3_main_unsafe_reduction")
+
+
+def fig4_safety_utility_tradeoff():
+    df = pd.read_csv(MAIN_TABLE)
+
+    controller_col = "Raw controller"
+    raw_unsafe = "Raw unsafe (%)"
+    shield_unsafe = "Shielded unsafe (%)"
+    retention = "Utility retention (%)"
+
+    df[controller_col] = df[controller_col].apply(clean_controller_name)
+
+    fig, ax = plt.subplots(figsize=(7.2, 4.6))
+
+    # One point per controller: x = unsafe reduction, y = utility retention.
+    unsafe_reduction = df[raw_unsafe].astype(float) - df[shield_unsafe].astype(float)
+    y = df[retention].astype(float)
+
+    ax.scatter(unsafe_reduction, y, s=70)
+
+    for i, row in df.iterrows():
+        ax.annotate(
+            row[controller_col],
+            (unsafe_reduction.iloc[i], y.iloc[i]),
+            xytext=(5, 5),
+            textcoords="offset points",
+            fontsize=8,
+        )
+
+    ax.set_xlabel("Absolute unsafe-rate reduction (percentage points)")
+    ax.set_ylabel("Utility retention (%)")
+    ax.set_title("Safety-utility tradeoff of CertiTwin shielding")
+    ax.grid(True, linestyle="--", linewidth=0.6, alpha=0.6)
+
+    # Reasonable limits.
+    ax.set_ylim(max(80, y.min() - 3), min(105, y.max() + 2))
+    ax.set_xlim(left=-1)
+
+    fig.tight_layout()
+    return save_figure(fig, "fig4_safety_utility_tradeoff")
+
+
+def fig5_certificate_inflation():
+    overall = pd.read_csv(CERT_INFLATION_OVERALL)
+
+    fig, ax = plt.subplots(figsize=(8.0, 4.6))
+
+    # Plot max shielded unsafe vs alpha for each noise scale.
+    for noise_scale, g in overall.groupby("noise_scale"):
+        g = g.sort_values("alpha")
+        ax.plot(
+            g["alpha"],
+            100.0 * g["max_shielded_unsafe_rate"],
+            marker="o",
+            linewidth=1.8,
+            label=f"noise={noise_scale:.2f}",
+        )
+
+    ax.set_xlabel("Certificate inflation factor α")
+    ax.set_ylabel("Max shielded unsafe decisions (%)")
+    ax.set_title("Perturbation-aware certificate inflation")
+    ax.grid(True, linestyle="--", linewidth=0.6, alpha=0.6)
+    ax.legend(frameon=False, ncol=2)
+
+    fig.tight_layout()
+    return save_figure(fig, "fig5_certificate_inflation")
+
+
+def fig6_sla_threshold_robustness():
+    df = pd.read_csv(SLA_TABLE)
+
+    # Column names generated by Step 4.2B.
+    x_col = "SLA scale"
+    unsafe_col = "Max shielded unsafe (%)"
+    retention_col = "Min utility retention (%)"
+
+    x = df[x_col].astype(float)
+    unsafe = df[unsafe_col].astype(float)
+    retention = df[retention_col].astype(float)
+
+    fig, ax1 = plt.subplots(figsize=(8.0, 4.6))
+
+    line1 = ax1.plot(
+        x,
+        unsafe,
+        marker="o",
+        linewidth=1.8,
+        label="Max shielded unsafe",
+    )
+    ax1.set_xlabel("SLA threshold scale")
+    ax1.set_ylabel("Max shielded unsafe decisions (%)")
+    ax1.grid(True, linestyle="--", linewidth=0.6, alpha=0.6)
+
+    ax2 = ax1.twinx()
+    line2 = ax2.plot(
+        x,
+        retention,
+        marker="s",
+        linewidth=1.8,
+        label="Min utility retention",
+    )
+    ax2.set_ylabel("Min utility retention (%)")
+
+    ax1.set_title("SLA threshold robustness")
+
+    lines = line1 + line2
+    labels = [l.get_label() for l in lines]
+    ax1.legend(lines, labels, frameon=False, loc="center right")
+
+    fig.tight_layout()
+    return save_figure(fig, "fig6_sla_threshold_robustness")
+
+
+def main():
+    required = [
+        MAIN_TABLE,
+        MAIN_FULL_TABLE,
+        CERT_INFLATION_OVERALL,
+        CERT_INFLATION_RECOMMENDED,
+        SLA_TABLE,
+    ]
+
+    for p in required:
+        assert_exists(p)
+
+    outputs = {}
+
+    print("Generating Fig. 3...")
+    outputs["fig3_main_unsafe_reduction"] = fig3_main_unsafe_reduction()
+
+    print("Generating Fig. 4...")
+    outputs["fig4_safety_utility_tradeoff"] = fig4_safety_utility_tradeoff()
+
+    print("Generating Fig. 5...")
+    outputs["fig5_certificate_inflation"] = fig5_certificate_inflation()
+
+    print("Generating Fig. 6...")
+    outputs["fig6_sla_threshold_robustness"] = fig6_sla_threshold_robustness()
+
+    report = {
+        "input_files": {
+            "main_table": str(MAIN_TABLE),
+            "main_full_table": str(MAIN_FULL_TABLE),
+            "certificate_inflation_overall": str(CERT_INFLATION_OVERALL),
+            "certificate_inflation_recommended": str(CERT_INFLATION_RECOMMENDED),
+            "sla_table": str(SLA_TABLE),
+        },
+        "outputs": {
+            k: {
+                "png": v[0],
+                "pdf": v[1],
+            }
+            for k, v in outputs.items()
+        },
+        "figure_interpretation": {
+            "fig3": "Main paired comparison: raw unsafe rate vs CertiTwin-shielded unsafe rate.",
+            "fig4": "Safety-utility tradeoff: unsafe-rate reduction against utility retention.",
+            "fig5": "Robustness under perturbed twin predictions via certificate inflation.",
+            "fig6": "SLA threshold robustness across strict, default, and loose regimes.",
+        },
+        "status": "completed",
+    }
+
+    with open(OUT_REPORT_JSON, "w", encoding="utf-8") as f:
+        json.dump(report, f, indent=2)
+
+    print("Step 5.2 completed.")
+    print(json.dumps(report, indent=2))
+
+
+if __name__ == "__main__":
+    main()

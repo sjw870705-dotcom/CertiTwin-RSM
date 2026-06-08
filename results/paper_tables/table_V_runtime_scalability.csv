@@ -1,0 +1,7 @@
+﻿Panel,Setting,K,Mean latency (ms),P95 latency (ms),P99 latency (ms),Shielded unsafe (%),Utility retention (%),Fallback (%),Note
+A: Replayed finite-candidate setting,Real replayed candidate groups,5,1.2109,1.8253,2.4136,0.0017,90.9864,0.0000,End-to-end Python implementation with table-based output handling
+B: Synthetic K-scaling micro-benchmark,Vectorized certificate/projection core,5,0.0340,0.0567,0.0981,,,,Runtime scaling only; not used for safety/utility comparison
+B: Synthetic K-scaling micro-benchmark,Vectorized certificate/projection core,20,0.0345,0.0587,0.0922,,,,Runtime scaling only; not used for safety/utility comparison
+B: Synthetic K-scaling micro-benchmark,Vectorized certificate/projection core,100,0.0352,0.0597,0.0849,,,,Runtime scaling only; not used for safety/utility comparison
+B: Synthetic K-scaling micro-benchmark,Vectorized certificate/projection core,500,0.0399,0.0710,0.0981,,,,Runtime scaling only; not used for safety/utility comparison
+B: Synthetic K-scaling micro-benchmark,Vectorized certificate/projection core,1000,0.0496,0.0937,0.1625,,,,Runtime scaling only; not used for safety/utility comparison

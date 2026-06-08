@@ -1,0 +1,8 @@
+default_sla_thresholds:
+  embb: 0.24160099
+  urllc: 0.04082544
+sla_threshold_scales: [0.8, 0.9, 1.0, 1.1, 1.2]
+interpretation:
+  scale_lt_1: stricter_sla
+  scale_eq_1: default_sla
+  scale_gt_1: looser_sla
