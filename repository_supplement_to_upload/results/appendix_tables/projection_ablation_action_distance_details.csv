@@ -1,0 +1,6 @@
+﻿Variant,Variant description,Max shielded unsafe (%),Mean shielded unsafe (%),Mean unsafe reduction on risky controllers (%),Min utility retention (%),Mean utility retention (%),Mean action distance,Max fallback (%)
+Full-CertiTwin,Calibrated q90 upper bound + certified safe set + distance-aware projection,0.005,0.001,99.9976,90.9864,96.4755,5.7767,0.0
+Raw-Pred-Safe,"Predicted mean safety only, without calibration",1.335,0.5323,98.4813,91.1648,96.547,5.6651,0.0
+Uncalibrated-Upper,"Mean + 1.0 sigma upper bound, without calibration quantile",0.0917,0.034,99.9018,90.9976,96.4797,5.7698,0.0
+No-Distance-Projection,"Certified safe set, but removes distance-to-raw-action term",0.005,0.001,99.9976,99.7803,99.9137,15.6796,0.0
+Risk-Min-Projection,"Certified safe set, selects the minimum upper-risk action",0.005,0.001,99.9976,99.765,99.9066,15.6513,0.0
