@@ -29,3 +29,10 @@ Examples include:
 - very large runtime and rule-shield detail files.
 
 The schema and representative contents are documented through `data/processed_samples/`, `results/supplement_tables/candidate_field_manifest.csv`, and `docs/dataset_description.md`.
+
+
+## Public ColO-RAN logged sanity validation
+
+The repository now includes a secondary public logged O-RAN sanity validation under `results/coloran_logged_sanity_v4/` and `scripts/coloran_logged_sanity/`. The validation uses ColO-RAN `rome_static_medium` logs with scheduling-policy candidates (`sched0`, `sched1`, `sched2`). It uses rank-normalized finite-candidate risk proxies and is reported in the manuscript as Table IX. This validation is deliberately bounded as a logged proxy sanity check, not a live near-RT RIC deployment or hard operator-SLA guarantee.
+
+Key full-run size: 175,014 candidate rows and 58,338 finite candidate groups. The held-out test split contains 11,669 groups.

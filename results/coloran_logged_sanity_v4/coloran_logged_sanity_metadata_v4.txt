@@ -1,0 +1,57 @@
+ColO-RAN logged sanity validation V4 metadata
+============================================
+
+This is a public logged O-RAN sanity validation, not a live near-RT RIC deployment.
+Candidate action semantics: scheduling-policy candidates (sched0/sched1/sched2).
+Split protocol: group-level random train/calib/test split; no row-level leakage across the same candidate group.
+Twin features: context/action features only; logged throughput/buffer/error/starvation fields are used as outcomes, not as input features.
+Risk proxies: rank-normalized finite-candidate eMBB throughput-deficit risk and URLLC-like burden risk.
+Slice mapping: slice 0=eMBB, slice 1=MTC, slice 2=URLLC, following the ColO-RAN README.
+
+Run parameters:
+- dataset_root: .
+- out_dir: coloran_logged_sanity_v4_outputs
+- max_tr: 28
+- max_exp: 5
+- max_windows: 60
+- window_ms: 1000
+- seed: 20260611
+- eps_embb: 0.75
+- eps_urllc: 0.75
+- q_quantile: 0.8
+- q_cap: 0.15
+- cert_relax: 0.05
+- lambda_r: 0.35
+- lambda_d: 0.08
+
+Proxy metadata:
+- eps_embb: 0.75
+- eps_urllc_like: 0.75
+- candidate_rows: 175014
+- groups: 58338
+- true_safe_candidate_ratio: 0.8033985852560367
+- groups_with_true_safe_ratio: 1.0
+- proxy_note: Rank-normalized within each finite candidate group: best=0, middle=0.5, worst=1.
+
+Twin/certificate metadata:
+- feature_set: sched_id;tr_id;exp_id;bs_id;window_idx;slice_prb_s0;slice_prb_s1;slice_prb_s2;num_ues_s0;num_ues_s1;num_ues_s2;total_ues;requested_prb_s0;requested_prb_s1;requested_prb_s2
+- q_quantile: 0.8
+- q90_embb_residual_raw: 1.0609782000292611e-05
+- q90_urllc_like_residual_raw: 0.019782099192352076
+- q_embb_residual_used: 1.0609782000292611e-05
+- q_urllc_like_residual_used: 0.019782099192352076
+- q_cap: 0.15
+- cert_relax: 0.05
+- train_mae_risk_embb: 0.08478732720699798
+- train_mae_risk_urllc_like: 0.07673443950364933
+- calib_mae_risk_embb: 0.08974971701316946
+- calib_mae_risk_urllc_like: 0.08265199844641555
+- test_mae_risk_embb: 0.09137892844930103
+- test_mae_risk_urllc_like: 0.08461393299460358
+- cert_safe_candidate_ratio: 0.8865862159598661
+- groups_with_cert_safe_ratio: 0.9995371798827523
+
+Outputs:
+- coloran_logged_sanity_v4_outputs\coloran_candidate_group_dataset_v4.csv
+- coloran_logged_sanity_v4_outputs\table_coloran_logged_sanity_validation_v4.csv
+- coloran_logged_sanity_v4_outputs\coloran_logged_sanity_diagnostics_v4.csv

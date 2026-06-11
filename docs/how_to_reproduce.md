@@ -51,3 +51,10 @@ The scripts under `scripts/source_pipeline/` document the step-wise experimental
 3. `data_manifest.md`
 4. `docs/repository_supplement.md`
 5. `reproducibility_checklist.md`
+
+
+## Public ColO-RAN logged sanity validation
+
+The repository now includes a secondary public logged O-RAN sanity validation under `results/coloran_logged_sanity_v4/` and `scripts/coloran_logged_sanity/`. The validation uses ColO-RAN `rome_static_medium` logs with scheduling-policy candidates (`sched0`, `sched1`, `sched2`). It uses rank-normalized finite-candidate risk proxies and is reported in the manuscript as Table IX. This validation is deliberately bounded as a logged proxy sanity check, not a live near-RT RIC deployment or hard operator-SLA guarantee.
+
+Key full-run size: 175,014 candidate rows and 58,338 finite candidate groups. The held-out test split contains 11,669 groups.

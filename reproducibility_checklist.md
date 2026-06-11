@@ -25,3 +25,8 @@
 - [x] Supplement files are integrated into `results/supplement_tables/` and `figures/supplement/`.
 - [x] Current manuscript table/figure mapping is documented in `docs/result_table_mapping.md`.
 - [x] Figure-generation scripts were executed successfully in the packaged directory.
+
+
+- [x] ColO-RAN logged sanity validation outputs are included under `results/coloran_logged_sanity_v4/`.
+- [x] The reproduction script is included under `scripts/coloran_logged_sanity/`.
+- [x] The manuscript explicitly states that this is a public logged sanity validation, not a live near-RT RIC deployment.

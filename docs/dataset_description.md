@@ -13,3 +13,8 @@ Key concepts:
 - `pred_std_*`: digital-twin uncertainty estimate;
 - `cert_safe_*`: calibrated certificate safety flag;
 - `management_utility`: utility used for raw-vs-shielded evaluation.
+
+
+## ColO-RAN logged validation subset
+
+The ColO-RAN logged validation uses the public `rome_static_medium` dataset. For each finite candidate group, the same training configuration, experiment instance, base station, and time window are paired across scheduling-policy directories (`sched0`, `sched1`, `sched2`). Slice 0, slice 1, and slice 2 are treated as eMBB, MTC, and URLLC-like services, respectively. The validation constructs rank-normalized risk proxies within each candidate group and reports only proxy-level logged sanity results.
