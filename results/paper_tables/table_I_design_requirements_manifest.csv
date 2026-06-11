@@ -1,0 +1,7 @@
+Requirement group,Repository role
+Protect heterogeneous raw controllers,Explained in manuscript Table I; implemented by controller-agnostic wrapper and paired protocol
+Avoid false-safe execution,Explained in manuscript Table I; quantified by calibrated certificate diagnostics
+Preserve raw-controller intent,Explained in manuscript Table I; quantified by action-distance and pass-through metrics
+Expose finite-candidate infeasibility,Explained in manuscript Table I; quantified by fallback diagnostics
+Handle degraded twin reliability,Explained in manuscript Table I; quantified by certificate-inflation robustness files
+Support operational monitoring,Explained in manuscript Table I; reflected in utility/action/fallback/runtime metrics

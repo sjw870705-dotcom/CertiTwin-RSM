@@ -1,0 +1,11 @@
+Item,Description
+Scenario,Replayed O-RAN slicing with finite candidate groups
+Slices,eMBB and URLLC SLA-risk management
+Raw controllers,PF; Greedy-SLA; DT-Top1; PPO; PPO-Penalty
+Shielding protocol,Same test trace; candidate groups; utility; and raw outputs
+Digital twin outputs,Candidate-level utility; SLA risk; and uncertainty
+Certificate,Calibrated upper risk bound using calibration residuals
+Main safety metric,Post-execution SLA-unsafe decision rate
+Management metrics,Utility retention; action changed rate; distance; fallback
+Robustness metrics,Perturbation response; certificate inflation; SLA shift
+Runtime metrics,Mean; P95; and P99 shielding latency

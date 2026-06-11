@@ -1,0 +1,6 @@
+﻿SLA scale,SLA regime,Groups with certified-safe candidates (%),Certified-safe candidate ratio (%),Max raw unsafe (%),Max shielded unsafe (%),Unsafe reduction interpretation,Min utility retention (%),Max fallback (%),Mean action distance
+0.8,Extremely strict,100.0,59.6503,70.285,1.525,76.38%,91.0624,0.0,5.9331
+0.9,Moderately strict,100.0,59.9983,70.285,0.0,100.00%,90.986,0.0,5.7776
+1.0,Default,100.0,60.001,70.285,0.005,100.00%,90.9864,0.0,5.7767
+1.1,Moderately loose,100.0,61.6147,0.0,0.0,N/A: raw actions already safe,92.0515,0.0,5.0732
+1.2,Loose,100.0,72.7487,0.0,0.0,N/A: raw actions already safe,97.2582,0.0,1.6484

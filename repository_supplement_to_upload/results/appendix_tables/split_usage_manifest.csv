@@ -1,5 +1,0 @@
-Split,Usage
-Training,Fit the digital-twin outcome model
-Calibration,Estimate calibrated residual quantiles for risk certificates
-Validation,Select model/check settings and inspect diagnostics
-Test,Final paired raw-vs-shielded evaluation and robustness analysis

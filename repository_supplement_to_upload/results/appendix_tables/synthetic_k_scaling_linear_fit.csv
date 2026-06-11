@@ -1,2 +1,0 @@
-﻿fit_target,slope_ms_per_candidate,intercept_ms,r2,k_min,k_max,num_points
-mean_total_latency_ms_vs_K,1.4919841908097495e-05,0.03382538835793552,0.9811413698888564,5,1000,8

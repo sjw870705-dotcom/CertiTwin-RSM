@@ -1,0 +1,9 @@
+Field group,Representative fields
+Decision context,"cluster, slicing, scheduling, time/bin identifier"
+Previous state,"buffer, CQI, request, throughput, error, previous PRB allocation"
+Candidate action,"candidate eMBB PRB, candidate URLLC PRB, candidate allocation share"
+True outcomes,"true V_eMBB, true V_URLLC, true management utility"
+Twin predictions,"predicted risk mean, predicted risk standard deviation, predicted utility"
+Certificates,q80/q90/q95 upper risk bounds
+Safety labels,"true safe, predicted-mean safe, certified safe"
+Evaluation keys,"candidate group ID, candidate ID, split label"

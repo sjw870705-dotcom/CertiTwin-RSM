@@ -1,6 +1,0 @@
-﻿Raw controller,Shielded controller,Raw unsafe (%),Shielded unsafe (%),Unsafe reduction (%),Raw utility,Shielded utility,Utility retention (%),Action changed (%),Pass-through (%),Fallback (%)
-PF,CertiTwin-PF,0.0,0.0,0.0,0.6677,0.6677,100.0,0.0,100.0,0.0
-Greedy-SLA,CertiTwin-Greedy-SLA,13.2933,0.0,100.0,0.7632,0.7503,98.3141,13.2933,86.7067,0.0
-DT-Top1,CertiTwin-DT,70.285,0.005,99.9929,0.7648,0.6958,90.9864,70.28,29.72,0.0
-PPO,CertiTwin-PPO,53.9667,0.0,100.0,0.7647,0.7117,93.0769,53.9667,46.0333,0.0
-PPO-Penalty,CertiTwin-PPO-Penalty,0.0,0.0,0.0,0.7632,0.7632,100.0,0.0,100.0,0.0
